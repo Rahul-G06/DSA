@@ -107,4 +107,15 @@ Write a program to convert a given infix expression to a postfix expression.
 
 Note: the `^` operator is right associative.
 
-Check `infix_to_postfix.c`
+Check `infix_to_postfix.c
+
+### Conversion of Infix Expression to Prefix Expression
+1. Scan the expression from right to left
+2. If the scanned symbol is
+    1. operand, place it onto prefix expression.
+    2. right parenthesis, push it onto stack.
+    3. left parenthesis, pop the content of stack until you get a corresponding right parenthesis.
+    4. operator, check if stack is empty or top of stack is right parenthesis. 
+        - If yes, push the operator onto stack.
+        - Else, check the precedence of the operator.
+        

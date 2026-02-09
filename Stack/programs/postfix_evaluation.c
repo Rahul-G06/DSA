@@ -6,7 +6,7 @@
 int top = -1;
 int data[SIZE];
 
-void push(char a)
+void push(int a)
 {
     if(top == SIZE - 1)
         printf("Stack Overflow\n");
@@ -14,7 +14,7 @@ void push(char a)
         data[++top] = a;
 }
 
-char pop()
+int pop()
 {
     if(top == -1)
     {
@@ -24,7 +24,7 @@ char pop()
         return data[top--];
 }
 
-int operate(char op1, char op, char op2)
+int operate(int op1, char op, int op2)
 {
     switch(op)
     {
@@ -43,7 +43,7 @@ int operate(char op1, char op, char op2)
 
 int evaluate_postfix(char *postfix)
 {
-    int a;
+    int a, op1, op2;
     for(int i = 0; postfix[i]; ++i)
     {
         if(isalnum(postfix[i]))
@@ -56,8 +56,27 @@ int evaluate_postfix(char *postfix)
             }
             else
             {
-                push(postfix[i] - '0');
+                push((int)(postfix[i] - '0'));
             }
         }
+        else
+        {
+            op2 = pop();
+            op1 = pop();
+            a = operate(op1, postfix[i], op2);
+            push(a);
+        }
     }
+
+    a = pop();
+    printf("%d", a);
+}
+
+int main() 
+{
+    char postfix[100];
+    printf("Enter the postfix expression: ");
+    scanf("%s", postfix);
+    evaluate_postfix(postfix);
+    return 0;
 }
