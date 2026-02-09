@@ -102,6 +102,6 @@ int main()
     printf("Enter the infix expression: ");
     scanf("%s", infix);
     infix_to_postfix(infix, postfix);
-    printf("The postfix expression is %s", postfix);
+    printf("The postfix expression is %s\n", postfix);
     return 0;
 }
